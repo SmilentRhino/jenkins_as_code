@@ -6,5 +6,5 @@ Just a script to test jenkins build
 '''
 
 import os
-
-print(os.getcwd())
+jenkins_home = '/var/lib/jenkins'
+print(os.listdir(jenkins_home))
