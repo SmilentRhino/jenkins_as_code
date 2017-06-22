@@ -6,11 +6,14 @@ Check jenkins home structure, if changed, we should manually decide if backup is
 needed
 '''
 
+from __future__ import print_function
 import os
 import sys
-from __future__ import print_function
 
 def main():
+    '''
+    Diff current jenkins home entries with expected ones
+    '''
     expected_entries = []
     current_entries = []
     jenkins_home = '/var/lib/jenkins'
@@ -21,13 +24,13 @@ def main():
             current_entries.append(entry)
     print('Current entries:', end='')
     print(current_entries)
-    mis_entries =  set(expected_entries).symmetric_difference(current_entries):
-        if mis_entries:
-            print('Unexpected or missed entries:', end='')
-            print(mis_entires)
-            sys.exit(1)
-        else:
-            sys.exit(0)
+    mis_entries = set(expected_entries).symmetric_difference(current_entries)
+    if mis_entries:
+        print('Unexpected or missed entries:', end='')
+        print(mis_entries)
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
