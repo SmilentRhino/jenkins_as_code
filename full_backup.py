@@ -33,16 +33,29 @@ def print_info(jenkins_home,
     print('Create {0} links:'.format(len(link_to_create)))
     for link in link_to_create:
         print(link)
+        os.symlink(link[0], os.path.join(backup_home, link[1]))
 
 # Copy dirs
     print('Copy {0} dirs:'.format(len(dir_to_copy)))
     for dir_path in dir_to_copy:
         print(os.path.join(backup_home, *dir_path))
+        if not os.path.exists(os.path.join(jenkins_home, *dir_path)):
+            print('Fatal error, dir not exists: {0}'.format(dir_path))
+            sys.exit(1)
+        shutil.copytree(os.path.join(jenkins_home, *dir_path),
+                        os.path.join(backup_home, *dir_path))
+
+
 
 # Copy files
     print('Copy {0} files:'.format(len(file_to_copy)))
     for file_path in file_to_copy:
         print(os.path.join(backup_home, *file_path))
+        if not os.path.exists(os.path.join(jenkins_home, *file_path)):
+            print('Fatal error, file not exists: {0}'.format(dir_path))
+            sys.exit(1)
+        shutil.copy(os.path.join(jenkins_home, *file_path),
+                    os.path.join(backup_home, *file_path))
 
 def create_pid():
     '''
