@@ -43,7 +43,26 @@ def print_info(jenkins_home,
     for file_path in file_to_copy:
         print(os.path.join(backup_home, *file_path))
 
+def create_pid():
+    '''
+    Create pid to avoid parallel run
+    '''
+    if os.path.exists('./full_backup.pid'):
+        print('Fatal error, backup process already exists.')
+        print('PID created at {0}'.format(os.path.getctime('./full_backup.pid')))
+        sys.exit(1)
+    with open('full_backup.pid', 'w') as pid:
+        pid.write(str(os.getpid()))
 
+def rm_pid():
+    '''
+    Remove pid after successfull run
+    '''
+    if os.path.exists('./full_backup.pid'):
+        print('Fatal error, backup pid is missing.')
+        sys.exit(1)
+    else:
+        os.remove('./full_backup.pid')
 
 def main():
     '''
@@ -59,6 +78,7 @@ def main():
     file_to_copy = []
     not_backup = []
 
+    create_pid()
 # Create new backup directory
     new_backup = os.path.join(backup_home, datetime.datetime.now().strftime('FULL-%Y-%m-%d_%H-%M'))
     if os.path.exists(new_backup):
@@ -108,6 +128,7 @@ def main():
 
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
+    rm_pid()
 
 if __name__ == "__main__":
     main()
