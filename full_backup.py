@@ -102,15 +102,15 @@ def main():
             not_backup.append(entry)
         elif entry not in ['caches', 'logs', 'jobs', 'jenkins_backup']:
             src_path = os.path.join(jenkins_home, entry)
-            if os.path.isfile(src_path):
-                file_to_copy.append([entry])
-                #shutil.copy(src_path, dst_path)
-            elif os.path.isdir(src_path):
-                dir_to_copy.append([entry])
-                #shutil.copytree(src_path, dst_path)
-            elif os.path.islink(src_path):
+            if os.path.islink(src_path):
                 link_to_create.append(os.readlink(src_path), entry)
                 #os.symlink(os.readlink(src_path), dst_path)
+            elif os.path.isfile(src_path):
+                file_to_copy.append([entry])
+                #shutil.copy(src_path, dst_path)
+            elif os.path.isdir(src_path) and not os.path.islink(src_path):
+                dir_to_copy.append([entry])
+                #shutil.copytree(src_path, dst_path)
             else:
                 print('Unkown entry type, {0}'.format(entry))
 
