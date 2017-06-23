@@ -27,6 +27,7 @@ def print_info(jenkins_home,
     print('Create {0} dirs'.format(len(dir_to_create)))
     for dir_path in dir_to_create:
         print(os.path.join(backup_home, *dir_path))
+        os.mkdir(os.path.join(backup_home, *dir_path))
 
 # Create links
     print('Create {0} links:'.format(len(link_to_create)))
@@ -103,7 +104,7 @@ def main():
         elif entry not in ['caches', 'logs', 'jobs', 'jenkins_backup']:
             src_path = os.path.join(jenkins_home, entry)
             if os.path.islink(src_path):
-                link_to_create.append(os.readlink(src_path), entry)
+                link_to_create.append([os.readlink(src_path), entry])
                 #os.symlink(os.readlink(src_path), dst_path)
             elif os.path.isfile(src_path):
                 file_to_copy.append([entry])
