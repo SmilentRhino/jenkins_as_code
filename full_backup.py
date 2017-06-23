@@ -135,10 +135,10 @@ def main():
         file_to_copy.append(['jobs', jenkins_job, 'config.xml'])
         if 'branches' in os.listdir(os.path.join(jenkins_home, 'jobs', jenkins_job)):
             dir_to_create.append(['jobs', jenkins_job, 'branches'])
+            dir_to_copy.append(['jobs', jenkins_job, 'template'])
             for branch in os.listdir(os.path.join(jenkins_home, 'jobs', jenkins_job, 'branches')):
                 dir_to_create.append(['jobs', jenkins_job, 'branches', branch])
                 file_to_copy.append(['jobs', jenkins_job, 'branches', branch, 'config.xml'])
-                dir_to_copy.append(['jobs', jenkins_job, 'branches', branch, 'templates'])
 
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
