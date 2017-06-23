@@ -87,7 +87,7 @@ def main():
         sys.exit(1)
     else:
         print('Create new backup {0}'.format(new_backup))
-        #os.mkdir(new_backup)
+        os.mkdir(new_backup)
 
 # Check if jenkins home changes
 #    current_entries = os.listdir(jenkins_home)
