@@ -51,14 +51,14 @@ def create_pid():
         print('Fatal error, backup process already exists.')
         print('PID created at {0}'.format(os.path.getctime('./full_backup.pid')))
         sys.exit(1)
-    with open('full_backup.pid', 'w') as pid:
+    with open('./full_backup.pid', 'w') as pid:
         pid.write(str(os.getpid()))
 
 def rm_pid():
     '''
     Remove pid after successfull run
     '''
-    if os.path.exists('./full_backup.pid'):
+    if not os.path.exists('./full_backup.pid'):
         print('Fatal error, backup pid is missing.')
         sys.exit(1)
     else:
