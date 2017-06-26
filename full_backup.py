@@ -87,7 +87,7 @@ def discard_older_backups(backup_home, new_backup):
         if entry.startswith('FULL-'):
             entry_path = os.path.join(backup_home, entry)
             if entry_path != new_backup and entry_path != new_backup + '.tgz':
-                print('Remove old backup {}'.format(entry_path))
+                print('Remove old backup {0}'.format(entry_path))
                 if entry.endswith('.tgz'):
                     os.remove(entry_path)
                 else:
