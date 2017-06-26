@@ -10,6 +10,7 @@ import os
 import sys
 import shutil
 import datetime
+import tarfile
 
 def print_info(jenkins_home,
                backup_home,
@@ -162,8 +163,14 @@ def main():
 
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
-    shutil.make_archive(new_backup, 'gztar', new_backup)
+    #shutil.make_archive(new_backup, 'gztar', new_backup)
+    new_backup_tar = new_backup + '.tgz'
+    cwd = os.getcwd()
+    os.chdir(backup_home)
+    with tarfile.open(new_backup_tar, 'w:gz') as tar:
+        tar.add(os.path.basename(new_backup))
     discard_older_backups(backup_home, new_backup)
+    os.chdir(cwd)
     rm_pid()
 
 if __name__ == "__main__":
