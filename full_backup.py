@@ -60,6 +60,16 @@ def print_info(jenkins_home,
             shutil.copy(os.path.join(jenkins_home, *file_path),
                         os.path.join(backup_home, *file_path))
 
+
+def discard_older_backups(backup_home, new_backup):
+    '''
+    Keep only the newest backup
+    '''
+    for entry in os.listdir(backup_home):
+        entry_path = os.path.join(backup_home, entry)
+        if entry_path != new_backup and entry_path != new_backup + '.tar.gz':
+            print('Remove old backup {}'.format(entry_path))
+
 def create_pid():
     '''
     Create pid to avoid parallel run
@@ -146,6 +156,7 @@ def main():
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
     shutil.make_archive(new_backup, 'gztar', new_backup)
+    discard_older_backups(backup_home, new_backup)
     rm_pid()
 
 if __name__ == "__main__":
