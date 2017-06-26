@@ -27,7 +27,7 @@ def print_info(jenkins_home,
     print('Create {0} dirs'.format(len(dir_to_create)))
     for dir_path in dir_to_create:
         print(os.path.join(backup_home, *dir_path))
-        os.mkdir(os.path.join(backup_home, *dir_path))
+        os.mkdir(os.path.join(backup_home, *dir_path), 0o755)
 
 # Create links
     print('Create {0} links:'.format(len(link_to_create)))
@@ -41,9 +41,11 @@ def print_info(jenkins_home,
         print(os.path.join(backup_home, *dir_path))
         if not os.path.exists(os.path.join(jenkins_home, *dir_path)):
             print('Fatal error, dir not exists: {0}'.format(dir_path))
-            sys.exit(1)
-        shutil.copytree(os.path.join(jenkins_home, *dir_path),
-                        os.path.join(backup_home, *dir_path))
+#            sys.exit(1)
+        else:
+            shutil.copytree(os.path.join(jenkins_home, *dir_path),
+                            os.path.join(backup_home, *dir_path),
+                            symlinks=True)
 
 
 
@@ -52,10 +54,11 @@ def print_info(jenkins_home,
     for file_path in file_to_copy:
         print(os.path.join(backup_home, *file_path))
         if not os.path.exists(os.path.join(jenkins_home, *file_path)):
-            print('Fatal error, file not exists: {0}'.format(dir_path))
-            sys.exit(1)
-        shutil.copy(os.path.join(jenkins_home, *file_path),
-                    os.path.join(backup_home, *file_path))
+            print('Fatal error, file not exists: {0}'.format(file_path))
+#            sys.exit(1)
+        else:
+            shutil.copy(os.path.join(jenkins_home, *file_path),
+                        os.path.join(backup_home, *file_path))
 
 def create_pid():
     '''
@@ -142,6 +145,7 @@ def main():
 
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
+    shutil.make_archive(new_backup, 'gztar', new_backup)
     rm_pid()
 
 if __name__ == "__main__":
