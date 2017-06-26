@@ -69,9 +69,9 @@ def discard_older_backups(backup_home, new_backup):
     for entry in os.listdir(backup_home):
         if entry.startswith('FULL-'):
             entry_path = os.path.join(backup_home, entry)
-            if entry_path != new_backup and entry_path != new_backup + '.tar.gz':
+            if entry_path != new_backup and entry_path != new_backup + '.tgz':
                 print('Remove old backup {}'.format(entry_path))
-                if entry.endswith('.tar.gz'):
+                if entry.endswith('.tgz'):
                     os.remove(entry_path)
                 else:
                     shutil.rmtree(entry_path)
