@@ -61,6 +61,23 @@ def print_info(jenkins_home,
             shutil.copy(os.path.join(jenkins_home, *file_path),
                         os.path.join(backup_home, *file_path))
 
+def compress_backup(backup_home, new_backup):
+    '''
+    Compress new backup into tgz
+    '''
+    #shutil.make_archive(new_backup, 'gztar', new_backup)
+    new_backup_tar = new_backup + '.tgz'
+    cwd = os.getcwd()
+    os.chdir(backup_home)
+    try:
+        tar = tarfile.open(new_backup_tar, 'w:gz')
+        tar.add(os.path.basename(new_backup))
+    except tarfile.TarError as tar_error:
+        print('Error creating tar file, {0}!'.format(tar_error))
+        sys.exit(1)
+    finally:
+        tar.close()
+    os.chdir(cwd)
 
 def discard_older_backups(backup_home, new_backup):
     '''
@@ -163,14 +180,9 @@ def main():
 
     print_info(jenkins_home, new_backup,
                [not_backup, dir_to_create, link_to_create, dir_to_copy, file_to_copy])
-    #shutil.make_archive(new_backup, 'gztar', new_backup)
-    new_backup_tar = new_backup + '.tgz'
-    cwd = os.getcwd()
-    os.chdir(backup_home)
-    with tarfile.open(new_backup_tar, 'w:gz') as tar:
-        tar.add(os.path.basename(new_backup))
+
+    compress_backup(backup_home, new_backup)
     discard_older_backups(backup_home, new_backup)
-    os.chdir(cwd)
     rm_pid()
 
 if __name__ == "__main__":
