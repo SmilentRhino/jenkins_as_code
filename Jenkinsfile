@@ -1,20 +1,24 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
-            environment {
-                AN_ACCESS_KEY = credentials('my-prefined-secret-text')
-            }
+        stage('Clonde') {
             steps {
-                echo 'Building..'
-                sh 'printenv'
-                sh 'python test_password.py'
+                git credentialsId: '33e35b80-2db3-4f65-ba2f-621628b51904', url: 'https://github.com/SmilentRhino/op_mac.git'
+                echo 'Clone..'
+            }        
+        }
+        stage('Build') {
+            steps {
+                sh 'ls'
             }
         }
         stage('Test') {
+            environment {
+                AN_ACCESS_KEY = credentials('bff24bf8-a05c-4bc7-8b36-b89fc0f80d8a')
+            }
             steps {
-                echo 'Testing..'
+                sh 'printenv'
+                sh '/usr/bin/python test_password.py'
             }
         }
         stage('Deploy') {
