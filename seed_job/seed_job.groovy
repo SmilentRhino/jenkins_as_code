@@ -140,17 +140,24 @@ pipelineJob('discard_old_builds') {
     }
 }
 
-def sample_groovys = findFiles(glob: '*/sample_*.groovy')
-for (sample_groovy in smaple_groovys) {
-    def jobName = sample_groovy.replaceAll('.groovy','') 
-    pipelineJob("${jobName}") {
-        definition {
-            cps {
-                script(readFileFromWorkspace("${sample_groovy}"))
-                sandbox()
+//def sample_groovys = findFiles(glob: 'seed_job/*/sample_*.groovy')
+hudson.FilePath workspace = hudson.model.Executor.currentExecutor().getCurrentWorkspace()
+def sample_grooyvs = workspace.child('seed_job/sample').list().findAll { it.name  ==~ /sample.*\.groovy/ }
+workspace.child('seed_job').list().each { dir ->
+  def groovy_list = dir.list()
+  groovy_list.each { sample_groovy ->
+    if (sample_groovy.getBaseName() =~ /sample.*/) {
+        //println sample_groovy.getBaseName()
+        jobName = sample_groovy.getBaseName() 
+        pipelineJob("${jobName}") {
+            definition {
+                cps {
+                    script(readFileFromWorkspace(sample_groovy)
+                    sandbox()
+                }
             }
-        }
-    }  
+        }  
+    }
 }
 
 
