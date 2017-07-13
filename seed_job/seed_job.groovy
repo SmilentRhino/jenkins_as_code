@@ -140,6 +140,15 @@ pipelineJob('discard_old_builds') {
     }
 }
 
+pipelineJob('full_backup') {
+    definition {
+        cps {
+            script(readFileFromWorkspace('seed_job/jenkins_admin/full_backup.groovy'))
+            sandbox()
+        }
+    }
+}
+
 //def sample_groovys = findFiles(glob: 'seed_job/*/sample_*.groovy')
 hudson.FilePath workspace = hudson.model.Executor.currentExecutor().getCurrentWorkspace()
 def sample_grooyvs = workspace.child('seed_job/sample').list().findAll { it.name  ==~ /sample.*\.groovy/ }
@@ -241,7 +250,8 @@ sectionedView("JENKINS_ADMIN") {
             width('HALF')
             alignment('LEFT')
             jobs {
-              names('discard_old_builds')
+              names('discard_old_builds',
+                    'full_backup')
             }
             columns {
                 status()
