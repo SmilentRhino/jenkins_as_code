@@ -149,10 +149,12 @@ workspace.child('seed_job').list().each { dir ->
         if (sample_groovy.getBaseName() =~ /sample.*/) {
             //println sample_groovy.getBaseName()
             jobName = sample_groovy.getBaseName() 
+            def rel_path = sample_groovy.getRemote().replace(workspace.getRemote() + '/','')
+            print rel_path
             pipelineJob("${jobName}") {
                 definition {
                     cps {
-                        script(readFileFromWorkspace(sample_groovy))
+                        script(readFileFromWorkspace(rel_path))
                         sandbox()
                     }
                 }
