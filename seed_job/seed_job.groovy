@@ -1,3 +1,5 @@
+sh 'cd seed_job'
+sh 'pwd'
 pipelineJob('simple_pipeline_job') {
     definition {
         cps {
