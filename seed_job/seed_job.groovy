@@ -1,9 +1,7 @@
-sh 'cd seed_job'
-sh 'pwd'
 pipelineJob('simple_pipeline_job') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/simple_pipeline_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/simple_pipeline_job.groovy'))
             sandbox()
         }
     }
@@ -12,7 +10,7 @@ pipelineJob('simple_pipeline_job') {
 pipelineJob('groovy_maps') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/groovy_maps.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/groovy_maps.groovy'))
             sandbox()
         }
     }
@@ -21,7 +19,7 @@ pipelineJob('groovy_maps') {
 pipelineJob('run_on_slave') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/run_on_slave.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/run_on_slave.groovy'))
             sandbox()
         }
     }
@@ -30,7 +28,7 @@ pipelineJob('run_on_slave') {
 pipelineJob('python_no_flush') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/python_no_flush.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/python_no_flush.groovy'))
             sandbox()
         }
     }
@@ -39,7 +37,7 @@ pipelineJob('python_no_flush') {
 pipelineJob('python_flush') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/python_flush.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/python_flush.groovy'))
             sandbox()
         }
     }
@@ -48,7 +46,7 @@ pipelineJob('python_flush') {
 pipelineJob('downstream_job') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/downstream_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/downstream_job.groovy'))
             sandbox()
         }
     }
@@ -57,7 +55,7 @@ pipelineJob('downstream_job') {
 pipelineJob('parallel_job') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/parallel_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/parallel_job.groovy'))
             sandbox()
         }
     }
@@ -66,7 +64,7 @@ pipelineJob('parallel_job') {
 pipelineJob('git_in_pipeline') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/git_in_pipeline'))
+            script(readFileFromWorkspace('seed_job/sample/git_in_pipeline'))
             sandbox()
         }
     }
@@ -75,7 +73,7 @@ pipelineJob('git_in_pipeline') {
 pipelineJob('declare_parameter') {
     definition {
         cps {
-            script(readFileFromWorkspace('sample/declare_parameter'))
+            script(readFileFromWorkspace('seed_job/sample/declare_parameter'))
             sandbox()
         }
     }
@@ -87,7 +85,7 @@ pipelineJob('string_parameter_job') {
     }
     definition {
         cps {
-            script(readFileFromWorkspace('sample/string_parameter_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/string_parameter_job.groovy'))
             sandbox()
         }
     }
@@ -100,7 +98,7 @@ pipelineJob('choice_parameter_job') {
     }
     definition {
         cps {
-            script(readFileFromWorkspace('sample/choice_parameter_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/choice_parameter_job.groovy'))
             sandbox()
         }
     }
@@ -118,7 +116,7 @@ pipelineJob('credential_parameter_job') {
     }
     definition {
         cps {
-            script(readFileFromWorkspace('sample/credential_parameter_job.groovy'))
+            script(readFileFromWorkspace('seed_job/sample/credential_parameter_job.groovy'))
             sandbox()
         }
     }
@@ -136,7 +134,7 @@ pipelineJob('discard_old_builds') {
     }
     definition {
         cps {
-            script(readFileFromWorkspace('jenkins_admin/discard_old_builds.groovy'))
+            script(readFileFromWorkspace('seed_job/jenkins_admin/discard_old_builds.groovy'))
             sandbox()
         }
     }
@@ -154,7 +152,6 @@ for (sample_groovy in smaple_groovys) {
         }
     }  
 }
-
 
 
 def projects = ['sample','sample1']
