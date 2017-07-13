@@ -241,7 +241,7 @@ sectionedView("JENKINS_ADMIN") {
             width('HALF')
             alignment('LEFT')
             jobs {
-              selectedJob('discard_old_builds')
+              names('discard_old_builds')
             }
             columns {
                 status()
