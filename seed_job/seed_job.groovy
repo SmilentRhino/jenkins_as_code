@@ -152,7 +152,7 @@ workspace.child('seed_job').list().each { dir ->
         pipelineJob("${jobName}") {
             definition {
                 cps {
-                    script(readFileFromWorkspace(sample_groovy)
+                    script(readFileFromWorkspace(sample_groovy))
                     sandbox()
                 }
             }
