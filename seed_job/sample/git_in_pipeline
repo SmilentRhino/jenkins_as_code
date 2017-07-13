@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                sh 'pwd'
+                sh 'This what we have in the first repo'
+                sh 'ls'
+                echo 'Following is the real jenkinsfile we execute'
+                sh 'cat Jenkinsfile'
+                git url: 'https://github.com/SmilentRhino/jenkins_test.git'
+                echo 'Clone..'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'pwd'
+                sh 'Files in last repo are all gone'
+                sh 'ls'
+                sh 'The repo we just cloned alse has another Jenkinsifle, which will be ignored'
+                sh 'Folloing is the new jenkinfile'
+                sh 'cat Jenkinsfile'
+            }
+        }
+    }
+}

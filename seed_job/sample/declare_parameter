@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "The parameter won't show until the job has been built for once"
+                echo "${params.Greeting} World!"
+                echo "If you change anything about the parameter or add another, it also have to be built first"
+                echo "Delete parameter is also pain, that's why we use job dsl"
+            }
+        }
+    }
+}
