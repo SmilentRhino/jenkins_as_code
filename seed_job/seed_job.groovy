@@ -141,6 +141,15 @@ pipelineJob('discard_old_builds') {
 }
 
 pipelineJob('get_build_cause') {
+    properties {
+        authorizeProjectProperty {
+            strategy {
+                specificUsersAuthorizationStrategy {
+                    userid('jenkins')
+                }
+            }
+        }
+    }
     parameters {
         credentialsParam('ADMIN_CREDENTIAL_ID') {
             type('any')
