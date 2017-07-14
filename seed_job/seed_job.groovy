@@ -81,7 +81,7 @@ pipelineJob('declare_parameter') {
 
 pipelineJob('string_parameter_job') {
     parameters {
-        stringParam('STRING','default_value','the description')
+        stringParam('STRING_PARAM','default_value','the description')
     }
     definition {
         cps {
