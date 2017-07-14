@@ -146,6 +146,10 @@ pipelineJob('get_build_cause') {
             strategy {
                 specificUsersAuthorizationStrategy {
                     userid('jenkins')
+                    useApitoken(false)
+                    apitoken('')
+                    password('')
+                    dontRestrictJobConfiguration(false)
                 }
             }
         }
