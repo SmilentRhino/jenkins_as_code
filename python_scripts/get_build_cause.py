@@ -65,7 +65,7 @@ def get_upstream_path(build_causes):
     for build_cause in build_causes:
         if set(upstream_info).issubset(build_cause):
             build_path = os.path.join(build_cause['upstreamProject'],
-                                      build_cause['upstreamBuild'])
+                                      str(build_cause['upstreamBuild']))
             upstream_builds.append(build_path)
         elif set(user_info).issubset(build_cause):
             pass
