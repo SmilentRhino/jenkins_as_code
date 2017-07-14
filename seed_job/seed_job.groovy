@@ -123,6 +123,19 @@ pipelineJob('credential_parameter_job') {
 }
 
 pipelineJob('discard_old_builds') {
+    properties {
+        authorizeProjectProperty {
+            strategy {
+                specificUsersAuthorizationStrategy {
+                    userid('jenkins')
+                    useApitoken(false)
+                    apitoken('')
+                    password('')
+                    dontRestrictJobConfiguration(false)
+                }
+            }
+        }
+    }
     parameters {
         stringParam('TO_DISCARD_URL','','')
         credentialsParam('ADMIN_CREDENTIAL_ID') {
