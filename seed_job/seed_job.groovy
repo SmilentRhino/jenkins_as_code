@@ -140,6 +140,23 @@ pipelineJob('discard_old_builds') {
     }
 }
 
+pipelineJob('get_build_cause') {
+    parameters {
+        credentialsParam('ADMIN_CREDENTIAL_ID') {
+            type('any')
+            required()
+            defaultValue('')
+            description('')
+        }
+    }
+    definition {
+        cps {
+            script(readFileFromWorkspace('seed_job/jenkins_admin/get_build_cause.groovy'))
+            sandbox()
+        }
+    }
+}
+
 pipelineJob('full_backup') {
     definition {
         cps {
@@ -251,7 +268,8 @@ sectionedView("JENKINS_ADMIN") {
             alignment('LEFT')
             jobs {
               names('discard_old_builds',
-                    'full_backup')
+                    'full_backup',
+                    'get_build_cause')
             }
             columns {
                 status()
