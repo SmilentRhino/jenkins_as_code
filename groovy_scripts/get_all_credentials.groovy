@@ -2,6 +2,8 @@ import jenkins.model.*
 import hudson.model.User
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
+import com.cloudbees.plugins.credentials.domains.*
+import com.cloudbees.plugins.credentials.*
 /*
 Currently only support system credentials with global domain
 */
@@ -11,16 +13,13 @@ def sys_cred_store() {
     def credential_providers = com.cloudbees.plugins.credentials.CredentialsProvider.all()
     credential_providers.each { credential_provider ->
         switch (credential_provider.class) {
-            case com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider:
-                println 'FolderCredentialsProvider'
-                println 'Skip...'
-                break
             case com.cloudbees.plugins.credentials.SystemCredentialsProvider.ProviderImpl:
                 println 'SystemCredentialsProvider'
                 credential_store = credential_provider.getStore(Jenkins.instance)
                 store_domains = credential_store.getDomains()
+//stor_doman.isGlobal() doesn't work before credential plugin 2.0
                 store_domains.each { store_domain ->
-                    if (store_domain.isGlobal()) {
+                    if (store_domain == Domain.global()) {
                         println 'Default domain is global'
                     } else {
                         println 'Fatal Error, unsupported credential domain in system credentials provider'
@@ -29,6 +28,13 @@ def sys_cred_store() {
                 break
             case com.cloudbees.plugins.credentials.UserCredentialsProvider:
                 println 'UserCredentialsProvider'
+                println 'Skip...'
+                break
+/*
+If FolderCredentialsProvider doesn't exist, groovy will throw exception, so I put it at the end.
+*/
+            case com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider:
+                println 'FolderCredentialsProvider'
                 println 'Skip...'
                 break
             default:
