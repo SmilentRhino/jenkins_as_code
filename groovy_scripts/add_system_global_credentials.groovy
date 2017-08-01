@@ -131,7 +131,11 @@ def get_sys_global_credential(com.cloudbees.plugins.credentials.CredentialsStore
                 user_password_cred['id'] = credential.id
                 user_password_cred['description'] = credential.description
                 user_password_cred['username'] = credential.getUsername()
-                user_password_cred['password'] = credential.getPassword().getPlainText()
+                if (credential.getPassword()) {
+                    user_password_cred['password'] = credential.getPassword().getPlainText()
+                } else {
+                    user_password_cred['password'] = credential.getPassword()
+                }
                 user_password_cred['scope'] = credential.getScope().toString()
                 system_global_credentials['user_password_cred'].add(user_password_cred)
                 break
@@ -148,7 +152,11 @@ def get_sys_global_credential(com.cloudbees.plugins.credentials.CredentialsStore
                 }
                 basic_ssh_user_private_key_cred['id'] = credential.id
                 basic_ssh_user_private_key_cred['username'] = credential.getUsername()
-                basic_ssh_user_private_key_cred['passphrase'] = credential.getPassphrase().getPlainText()
+                if ( credential.getPassphrase()) {
+                    basic_ssh_user_private_key_cred['passphrase'] = credential.getPassphrase().getPlainText()
+                } else {
+                    basic_ssh_user_private_key_cred['passphrase'] = credential.getPassphrase()
+                }
                 basic_ssh_user_private_key_cred['privatekeys'] = credential.getPrivateKeys()
                 basic_ssh_user_private_key_cred['description'] = credential.description
                 basic_ssh_user_private_key_cred['scope'] = credential.getScope().toString()
