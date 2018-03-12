@@ -9,6 +9,8 @@ def plugin_list_path = build.workspace.toString() + '/seed_job/files/plugins.jso
 println ("$plugin_list_path")
 def inputFile = new File("$plugin_list_path")
 def plugin_list = new JsonSlurper().parse(inputFile)
-//def instance = Jenkins.getInstance()
 println (plugin_list)
-
+plugin_list.each{ plugin->
+    println ("Install ${plugin[0]} ...")
+    Jenkins.instance.updateCenter.getPlugin("${plugin[0]}").deploy()
+}
