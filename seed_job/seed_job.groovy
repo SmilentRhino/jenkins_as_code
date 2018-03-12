@@ -9,8 +9,7 @@ pipelineJob('simple_pipeline_job') {
 
 job('list_plugins') {
     steps {
-        dsl {
-            text(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy'))
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy')) {
         }
     }
 }
