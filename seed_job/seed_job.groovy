@@ -22,6 +22,14 @@ job('delete_all_jobs') {
 }
 
 job('create_user') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
     steps {
         systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/create_user.groovy')) {
         }
