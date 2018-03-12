@@ -79,6 +79,15 @@ pipelineJob('declare_parameter') {
     }
 }
 
+pipelineJob('readyaml_example') {
+    definition {
+        cps {
+            script(readFileFromWorkspace('seed_job/sample/readyaml_example'))
+            sandbox()
+        }
+    }
+}
+
 pipelineJob('string_parameter_job') {
     parameters {
         stringParam('STRING_PARAM','default_value','the description')
