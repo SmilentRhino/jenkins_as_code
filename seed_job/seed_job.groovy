@@ -14,7 +14,7 @@ job('list_plugins') {
     }
 }
 
-job('delete_all_jobs')
+job('delete_all_jobs') {
     steps {
         systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/delete_all_jobs.groovy')) {
         }
