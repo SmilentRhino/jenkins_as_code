@@ -7,6 +7,17 @@ pipelineJob('simple_pipeline_job') {
     }
 }
 
+pipelineJob('get_build_cause') {
+    definition {
+        cps {
+            script(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy'))
+            sandbox()
+        }
+    }
+}
+
+
+
 pipelineJob('groovy_maps') {
     definition {
         cps {
