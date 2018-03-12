@@ -1,9 +1,9 @@
 pipeline {
-    agent any
+    agent master
     stages {
-        stage('Dadada') {
+        stage('Init') {
             steps {
-                echo 'dadada..'
+                echo 'Go go go'
                 sh 'pwd'
                 sh 'ls'
                 sh 'cat Jenkinsfile'
