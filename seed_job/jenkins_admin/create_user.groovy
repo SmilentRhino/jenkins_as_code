@@ -14,7 +14,7 @@ println (user_list)
 def instance = Jenkins.getInstance()
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 user_list.each{ user->
-    println ("Ensure ${plugin[0]} ...")
+    println ("Ensure ${user.name} ...")
     hudsonRealm.createAccount("$user.name","$user.pass")
 }
 instance.setSecurityRealm(hudsonRealm)
