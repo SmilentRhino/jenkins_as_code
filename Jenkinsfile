@@ -9,7 +9,7 @@ node('master'){
             sh 'cat Jenkinsfile'
             sh 'ls seed_job'
             sh 'git branch'
-            jobDsl sandbox: true, targets: 'seed_job/seed_job.groovy'
+            jobDsl sandbox: true, targets: 'seed_job/seed_of_seed.groovy'
             cleanWs()
     }
 }
