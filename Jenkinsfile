@@ -1,5 +1,4 @@
-pipeline {
-    agent master
+node('master'){
     stages {
         stage('Init') {
             steps {
