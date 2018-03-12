@@ -7,11 +7,10 @@ pipelineJob('simple_pipeline_job') {
     }
 }
 
-pipelineJob('list_plugins') {
-    definition {
-        cps {
-            script(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy'))
-            sandbox()
+job('list_plugins') {
+    steps {
+        dsl {
+            text(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy'))
         }
     }
 }
@@ -307,6 +306,43 @@ for (project_name in projects) {
 }
 
 sectionedView("JENKINS_ADMIN") {
+    sections {
+        listView {
+            name('Seed')
+            width('HALF')
+            alignment('LEFT')
+            jobs {
+              names('seed_job',
+                    'seed_dsl')
+            }
+            columns {
+                status()
+                weather()
+                name()
+                lastSuccess()
+                lastFailure()
+            }
+        }
+    }
+    sections {
+        listView {
+            name('GroovyHelper')
+            width('HALF')
+            alignment('LEFT')
+            jobs {
+              names('list_plugins')
+            }
+            columns {
+                status()
+                weather()
+                name()
+                lastSuccess()
+                lastFailure()
+            }
+        }
+    }
+
+
     sections {
         listView {
             name('ADMIN')
