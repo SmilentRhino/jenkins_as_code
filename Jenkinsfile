@@ -4,5 +4,6 @@ node('master'){
             sh 'pwd'
             sh 'ls'
             sh 'cat Jenkinsfile'
+            jobDsl targets: 'seed_job/seed_job.groovy'
     }
 }
