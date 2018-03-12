@@ -2,7 +2,7 @@ node('master'){
     stage('Checkout'){
         git branch: 'feature/refactor', url: 'https://github.com/SmilentRhino/jenkins_as_code.git'
     }
-    stage('Init') {
+    stage('UpdateSeedDSL') {
             echo 'Go go go'
             sh 'pwd'
             sh 'ls'
@@ -10,6 +10,8 @@ node('master'){
             sh 'ls seed_job'
             sh 'git branch'
             jobDsl sandbox: true, targets: 'seed_job/seed_of_seed.groovy'
-            cleanWs()
+    }
+    stage('ExecuteDSL'){
+        build 'seed_dsl'
     }
 }
