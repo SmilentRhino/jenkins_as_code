@@ -5,7 +5,7 @@ node('master'){
     }
 
     stage("Print") {
-        datas = readYaml file: 'seed_job/files/users.yml'
+        datas = readYaml file: 'seed_job/files/users.yaml'
         echo "HELLO WORLD" 
     }
 }
