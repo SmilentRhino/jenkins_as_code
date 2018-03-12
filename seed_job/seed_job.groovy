@@ -82,7 +82,7 @@ pipelineJob('declare_parameter') {
 pipelineJob('readyaml_example') {
     definition {
         cps {
-            script(readFileFromWorkspace('seed_job/sample/readyaml_example'))
+            script(readFileFromWorkspace('seed_job/sample/readyaml_example.groovy'))
             sandbox()
         }
     }
