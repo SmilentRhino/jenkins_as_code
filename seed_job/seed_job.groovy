@@ -14,6 +14,13 @@ job('list_plugins') {
     }
 }
 
+job('delete_all_jobs')
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/delete_all_jobs.groovy')) {
+        }
+    }
+}
+
 job('install_plugins') {
     scm {
         git {
@@ -344,7 +351,8 @@ sectionedView("JENKINS_ADMIN") {
             alignment('LEFT')
             jobs {
               names('list_plugins',
-                    'install_plugins')
+                    'install_plugins',
+                    'delete_all_jobs')
             }
             columns {
                 status()
