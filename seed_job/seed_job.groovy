@@ -14,6 +14,12 @@ job('list_plugins') {
     }
 }
 
+job('install_plugins') {
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/install_plugins.groovy')) {
+        }
+    }
+}
 
 
 pipelineJob('groovy_maps') {
@@ -329,7 +335,8 @@ sectionedView("JENKINS_ADMIN") {
             width('HALF')
             alignment('LEFT')
             jobs {
-              names('list_plugins')
+              names('list_plugins',
+                    'install_plugins')
             }
             columns {
                 status()
