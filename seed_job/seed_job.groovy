@@ -21,6 +21,15 @@ job('delete_all_jobs') {
     }
 }
 
+job('create_user') {
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/create_user.groovy')) {
+        }
+    }
+}
+
+
+
 job('install_plugins') {
     scm {
         git {
@@ -352,6 +361,7 @@ sectionedView("JENKINS_ADMIN") {
             jobs {
               names('list_plugins',
                     'install_plugins',
+                    'create_user',
                     'delete_all_jobs')
             }
             columns {
