@@ -1,13 +1,16 @@
 [
     {
         "user1":
-            "name": "sample_user1",
-            "pass": "changeme"
+            { 
+                "name": "sample_user1",
+                "pass": "changeme"
+            }
     },
     {
         "user2":
-            "name": "sample_user2",
-            "pass": "iamdanger"
-    },
-
+           { 
+               "name": "sample_user2",
+               "pass": "iamdanger"
+           }
+    }
 ]
