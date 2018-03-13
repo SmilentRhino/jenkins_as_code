@@ -30,12 +30,15 @@ def yaml2json(yaml_path, path_type):
     for entry in os.listdir(file_path):
         if entry.endswith('.yaml'):
             logging.info("Found yaml file %s in %s", entry, file_path)
-            json_path = os.path.join(file_path, entry[:-5] + '.json')
+            yaml_path = os.path.join(file_path, entry)
+            json_path = yaml_path[:-5] + '.json'
             if os.path.exists(json_path):
                 logging.warning("%s exists, skip...", json_path)
-            yaml_content = yaml.load(entry)
-            with open(json_path, 'w') as json_file:
-                json.dump(yaml_content, json_file)
+            else:
+                with open(yaml_path, 'r') as yaml_file:
+                    yaml_content = yaml.load(yaml_file)
+                with open(json_path, 'w') as json_file:
+                    json.dump(yaml_content, json_file, indent=4)
 
 
 

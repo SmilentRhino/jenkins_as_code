@@ -1,1 +1,6 @@
-sample: sample
+- name: sample-user
+  pass: password
+- name: sample-user1
+  pass: changeme
+- name: sample-user2
+  pass: iwonttellyou 
