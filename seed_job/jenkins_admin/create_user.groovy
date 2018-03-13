@@ -38,7 +38,7 @@ user_list.each{ user->
         }
         else{
             println ("Removing $user.name")
-            hudsonRealm.getUser($user.name).delete()
+            hudsonRealm.getUser("$user.name").delete()
         }
     } else{
         if (user.state == 'present') {
