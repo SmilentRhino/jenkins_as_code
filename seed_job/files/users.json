@@ -1,14 +1,17 @@
 [
     {
         "name": "sample-user",
+        "state": "present",
         "pass": "password"
     },
     {
         "name": "sample-user1",
+        "state": "absent",
         "pass": "changeme"
     },
     {
         "name": "sample-user2",
+        "state": "present",
         "pass": "iwonttellyou"
     }
 ]
