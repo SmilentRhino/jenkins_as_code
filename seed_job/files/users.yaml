@@ -1,6 +1,9 @@
 - name: sample-user
   pass: password
+  state: present
 - name: sample-user1
   pass: changeme
+  state: absent
 - name: sample-user2
   pass: iwonttellyou 
+  state: present
