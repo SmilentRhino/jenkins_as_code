@@ -23,6 +23,7 @@
       build: true
       cancel: true
       configure: true
+      create: true
       delete: true
       discover: true
       move: true
