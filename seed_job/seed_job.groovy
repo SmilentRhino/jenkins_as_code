@@ -35,6 +35,20 @@ job('create_user') {
         }
     }
 }
+job('set_auth_strategy') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/set_auth_strategy.groovy')) {
+        }
+    }
+}
 
 
 
