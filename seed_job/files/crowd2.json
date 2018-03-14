@@ -1,0 +1,19 @@
+{
+    "useSSO": false, 
+    "httpProxyPort": "", 
+    "httpMaxConnections": "20", 
+    "cookieTokenkey": "", 
+    "socketTimeout": "20000", 
+    "httpProxyPassword": "", 
+    "httpTimeout": "5000", 
+    "password": "password", 
+    "applicationName": "jenkins", 
+    "group": "", 
+    "useProxy": false, 
+    "url": "https://www.alexrhino.net/crowd/", 
+    "httpProxyUsername": "", 
+    "httpProxyHost": "", 
+    "cookieDomain": "", 
+    "sessionValidationInterval": "2", 
+    "nestedGroups": false
+}
