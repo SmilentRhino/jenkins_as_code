@@ -117,7 +117,7 @@ def CreateAuthStrategy(sid, matrix){
         auth_strategy.add(hudson.model.Item.DISCOVER, sid)
     }
     if (matrix?.job?.move) {
-        auth_strategy.add(Permission.fromId('hudson.model.Item.MOVE'), sid)
+        auth_strategy.add(Permission.fromId('hudson.model.Item.Move'), sid)
     }
     if (matrix?.job?.read) {
         auth_strategy.add(hudson.model.Item.READ, sid)
