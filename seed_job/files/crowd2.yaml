@@ -3,7 +3,7 @@ applicationName: "jenkins"
 password: "password"
 group: ''
 nestedGroups: false
-sessionValidationInterval: '2'
+sessionValidationInterval: 2
 useSSO: false
 cookieDomain: ''
 cookieTokenkey: ''

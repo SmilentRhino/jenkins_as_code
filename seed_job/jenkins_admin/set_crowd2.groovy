@@ -19,7 +19,7 @@ if (instance.getSecurityRealm().getClass() == de.theit.jenkins.crowd.CrowdSecuri
     crowdRealm = instance.getSecurityRealm() 
 }else{
     crowdRealm = new de.theit.jenkins.crowd.CrowdSecurityRealm(
-        url = crowd2_conf.url
+        url = crowd2_conf.url,
         applicationName = crowd2_conf.applicationName,
         password = crowd2_conf.password,
         group = crowd2_conf.group,
