@@ -50,6 +50,20 @@ job('set_auth_strategy') {
     }
 }
 
+job('set_crowd2') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/set_crowd2.groovy')) {
+        }
+    }
+}
 
 
 job('install_plugins') {
@@ -384,6 +398,8 @@ sectionedView("JENKINS_ADMIN") {
               names('list_plugins',
                     'install_plugins',
                     'create_user',
+                    'set_auth_strategy',
+                    'set_crowd2',
                     'delete_all_jobs')
             }
             columns {
