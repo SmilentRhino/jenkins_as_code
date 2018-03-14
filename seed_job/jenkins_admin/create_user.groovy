@@ -26,8 +26,10 @@ def userIdList = []
 allUsers.each{ user->
     userIdList.add(user.getId())
 }
-println ($userIdList)
-println ($allUsers)
+println ('Current Users:')
+println ('-------------------------------------------')
+println (userIdList)
+println ('-------------------------------------------')
 
 //Check if user property has changed
 boolean CheckChanges() {
@@ -60,8 +62,4 @@ if (instance.getSecurityRealm().getClass() == HudsonPrivateSecurityRealm){
 }else{
     instance.setSecurityRealm(hudsonRealm)
 }
-
 instance.save()
-
-
-

@@ -16,7 +16,7 @@ def instance = Jenkins.getInstance()
 
 //Create auth strategy
 if (instance.authorizationStrategy.getClass() != ProjectMatrixAuthorizationStrategy){
-    auth_strategy = new ProjectMatrixAuthorizationStrategy())
+    auth_strategy = new ProjectMatrixAuthorizationStrategy()
 }else {
     auth_strategy = instance.authorizationStrategy
 }
