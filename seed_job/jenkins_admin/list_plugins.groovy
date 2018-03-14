@@ -9,7 +9,7 @@ println ('-----------------------------------------------------')
 
 instance.pluginManager.plugins.each { plugin -> 
     println ("${plugin.getDisplayName()} (${plugin.getShortName()}): ${plugin.getVersion()}");
-    plugin_list.add(["${plugin.getShortName()}", "${plugin.getVersion()}"]);
+    plugin_list.add(["${plugin.getShortName()}" : "${plugin.getVersion()}"]);
 }
 println (plugin_list)
 println ('-----------------------------------------------------')
