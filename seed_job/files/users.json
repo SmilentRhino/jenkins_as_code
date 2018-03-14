@@ -1,17 +1,63 @@
 [
     {
-        "name": "sample-user",
-        "state": "present",
-        "pass": "password"
-    },
+        "state": "present", 
+        "pass": "password", 
+        "matrix": {
+            "scm": {
+                "tag": true
+            }, 
+            "credential": {
+                "manage_domains": true, 
+                "create": true, 
+                "delete": true, 
+                "update": true, 
+                "view": true
+            }, 
+            "run": {
+                "replay": true, 
+                "update": true, 
+                "delete": true
+            }, 
+            "overall": {
+                "administer": true, 
+                "read": true
+            }, 
+            "state": "present", 
+            "agent": {
+                "disconnect": true, 
+                "configure": true, 
+                "build": true, 
+                "create": true, 
+                "delete": true, 
+                "connect": true
+            }, 
+            "job": {
+                "configure": true, 
+                "read": true, 
+                "move": true, 
+                "discover": true, 
+                "build": true, 
+                "workspace": true, 
+                "cancel": true, 
+                "delete": true
+            }, 
+            "view": {
+                "read": true, 
+                "create": true, 
+                "configure": true, 
+                "delete": true
+            }
+        }, 
+        "name": "sample-user"
+    }, 
     {
-        "name": "sample-user1",
-        "state": "absent",
+        "state": "absent", 
+        "name": "sample-user1", 
         "pass": "changeme"
-    },
+    }, 
     {
-        "name": "sample-user2",
-        "state": "present",
+        "state": "present", 
+        "name": "sample-user2", 
         "pass": "iwonttellyou"
     }
 ]

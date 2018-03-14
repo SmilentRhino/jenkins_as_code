@@ -51,6 +51,37 @@ user_list.each{ user->
     }
 }
 instance.setSecurityRealm(hudsonRealm)
+
+//Create auth strategy
+instance.authorizationStrategy
+boolean CreateAuthStrategy(sid, matrix){
+    if (matrix?.overall?.administer) {
+        instance.authorizationStrategy.add(Hudson.ADMINISTER, sid)
+    } 
+}
+
+//Set global matrix authorization strategy
+user_list.each{ user->
+    if (user.name in auth_strategy.getAllSIDs()) {
+        if (user.matrix.state == 'present') {
+            println ("$user.name already exists in matrix, skip creating...")
+            //CheckChanges()
+        }
+        else{
+            println ("Removing $user.name")
+        }
+    } else{
+        if (user.matrix.state == 'present') {
+            println ("Creating user $user.name...")
+            //hudsonRealm.createAccount("$user.name","$user.pass")
+            CreateAuthStrategy(user.name, user.matrix)
+        }
+        else{
+            //Doing nothing
+        }
+    }
+}
+
 instance.save()
 
 

@@ -1,6 +1,44 @@
 - name: sample-user
   pass: password
   state: present
+  matrix:
+    state: present
+    overall:
+      administer: true
+      read: true
+    credential:
+      create: true
+      delete: true
+      manage_domains: true
+      update: true
+      view: true
+    agent:
+      build: true
+      configure: true
+      connect: true
+      create: true
+      delete: true
+      disconnect: true
+    job:
+      build: true
+      cancel: true
+      configure: true
+      delete: true
+      discover: true
+      move: true
+      read: true
+      workspace: true
+    run:
+      delete: true
+      replay: true
+      update: true
+    view:
+      configure: true
+      create: true
+      delete: true
+      read: true
+    scm:
+      tag: true 
 - name: sample-user1
   pass: changeme
   state: absent
