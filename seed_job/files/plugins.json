@@ -39,6 +39,7 @@
     "branch-api": "2.0.18", 
     "sectioned-view": "1.24", 
     "github": "1.29.0", 
+    "crowd2": "1.8", 
     "pipeline-graph-analysis": "1.6", 
     "pipeline-stage-view": "2.9", 
     "workflow-durable-task-step": "2.19", 
