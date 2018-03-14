@@ -17,7 +17,8 @@ logging.basicConfig(level=logging.INFO)
               help='Path of the yaml files')
 @click.option('--path-type', default='relative',
               type=click.Choice(['real', 'relative']))
-def yaml2json(yaml_path, path_type):
+@click.option('--overwrite/--no-overwrite', default=True)
+def yaml2json(yaml_path, path_type, overwrite):
     '''
     Covert all yaml file in path yaml_path to json in the same
     dir.
@@ -32,7 +33,7 @@ def yaml2json(yaml_path, path_type):
             logging.info("Found yaml file %s in %s", entry, file_path)
             yaml_path = os.path.join(file_path, entry)
             json_path = yaml_path[:-5] + '.json'
-            if os.path.exists(json_path):
+            if os.path.exists(json_path) and not overwrite:
                 logging.warning("%s exists, skip...", json_path)
             else:
                 with open(yaml_path, 'r') as yaml_file:
