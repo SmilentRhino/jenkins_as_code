@@ -7,7 +7,7 @@ usages: max
 launch_method:
   type: "ssh_launcher"
   host: "192.168.0.1"
-  credentials: ''
+  credential_id: 'sample_global_system_cred'
   hostkey_verify: No
   port: 22
   jave_path: ''

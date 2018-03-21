@@ -35,6 +35,22 @@ job('create_user') {
         }
     }
 }
+
+
+job('add_nodes') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/add_nodes.groovy')) {
+        }
+    }
+}
 job('set_auth_strategy') {
     scm {
         git {
@@ -416,6 +432,7 @@ sectionedView("JENKINS_ADMIN") {
                     'set_auth_strategy',
                     'set_crowd2',
                     'add_credentials',
+                    'add_nodes',
                     'delete_all_jobs')
             }
             columns {
