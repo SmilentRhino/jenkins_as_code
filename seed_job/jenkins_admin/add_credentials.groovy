@@ -8,7 +8,7 @@ import com.cloudbees.plugins.credentials.domains.*
 /*
 Currently only support system credentials with global domain
 */
-/Get credientials.json
+//Get credientials.json
 def credentials_list_path = build.workspace.toString() + '/seed_job/files/sys_credentials.json'
 def inputFile = new File("$credentials_list_path")
 def expected_credentials = new JsonSlurper().parse(inputFile)
@@ -31,7 +31,7 @@ expected_credentials.each{ expected_cred->
     def cred = ''
     if (expected_cred.domain == 'global'){
             cred_domain = Domain.global()
-            if cred_exists(cred_domian, expected_cred.id){
+            if (cred_exists(cred_domian, expected_cred.id)){
                 println "Credential $expected_cred.id exists"
             }
             if (expected_cred.scope == 'global'){
@@ -45,7 +45,7 @@ expected_credentials.each{ expected_cred->
             }
             else{
                 println "Unsupported credential scope"
-                break
+                continue
             }
             if (expected_cred.type == 'username_password') {
                 cred = UsernamePasswordCredentialsImpl(scope=expected.cred.scop,
@@ -55,20 +55,19 @@ expected_credentials.each{ expected_cred->
                            password=expected_cred.password)
             }
             else if (expected_cred.type == 'username_priv_key'){
-                break 
+                continue 
             }
             else if (expected_cred.type == 'username_secret_text'){
-                break
+                continue
             }
             else{
                 println 'Unsupported credential type'
             }
-        }
         SystemCredentialsProvider.getInstance().getStore().addCredentials(cred_domain, cred)
     }
     else{
         println ("Domain other than global not supported now")
-        break
+        continue
     }
 }
 
