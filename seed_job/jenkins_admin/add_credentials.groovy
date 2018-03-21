@@ -13,7 +13,7 @@ def credentials_list_path = build.workspace.toString() + '/seed_job/files/sys_cr
 def inputFile = new File("$credentials_list_path")
 def expected_credentials = new JsonSlurper().parse(inputFile)
 
-current_credentials = SystemCredentialsProvider.getDomainCredentialsMap()
+current_credentials = SystemCredentialsProvider.getInstance().getDomainCredentialsMap()
 
 def cred_exists(cred_domain, id){
     current_credentials.each{ domain, cred->
@@ -31,7 +31,7 @@ expected_credentials.each{ expected_cred->
     def cred = ''
     if (expected_cred.domain == 'global'){
             cred_domain = Domain.global()
-            if (cred_exists(cred_domian, expected_cred.id)){
+            if (cred_exists(cred_domain, expected_cred.id)){
                 println "Credential $expected_cred.id exists"
             }
             if (expected_cred.scope == 'global'){
