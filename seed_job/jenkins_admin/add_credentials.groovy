@@ -50,11 +50,11 @@ expected_credentials.each{ expected_cred->
                 return
             }
             if (expected_cred.type == 'username_password') {
-                cred = UsernamePasswordCredentialsImpl(scope=expected.cred.scop,
-                           id=expected_cred.id,
-                           description=expected_cred.description,
-                           username=expected_cred.username,
-                           password=expected_cred.password)
+                cred = new UsernamePasswordCredentialsImpl(scope=cred_scope,
+                               id=expected_cred.id,
+                               description=expected_cred.description,
+                               username=expected_cred.username,
+                               password=expected_cred.password)
             }
             else if (expected_cred.type == 'username_priv_key'){
                 println 'Cred type username_priv_key to be supported'
