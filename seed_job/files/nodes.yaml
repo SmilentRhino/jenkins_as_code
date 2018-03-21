@@ -5,9 +5,18 @@ remote_root_dir: "/home/ubuntu"
 label: test
 usages: max
 launch_method:
+  type: "ssh_launcher"
   host: "192.168.0.1"
   credentials: ''
   hostkey_verify: No
+  port: 22
+  jave_path: ''
+  jvm_options: ''
+  prefix_start_slave_cmd: ''
+  suffix_start_slave_cmd: ''
+  connection_timeout: 0
+  maximum_number_of_retries: 3
+  seconds_between_retries: 30
 availability: keep
 node_properties:
   enable_node_based_security: false

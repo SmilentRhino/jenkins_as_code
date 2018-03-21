@@ -1,19 +1,28 @@
 {
     "availability": "keep",
-    "executors": 1,
-    "remote_root_dir": "/home/ubuntu",
     "description": "just a sample agent",
-    "name": "sample_agent",
-    "usages": "max",
+    "executors": 1,
     "label": "test",
     "launch_method": {
-        "host": "192.168.0.1",
+        "connection_timeout": 0,
         "credentials": "",
-        "hostkey_verify": false
+        "host": "192.168.0.1",
+        "hostkey_verify": false,
+        "jave_path": "",
+        "jvm_options": "",
+        "maximum_number_of_retries": 3,
+        "port": 22,
+        "prefix_start_slave_cmd": "",
+        "seconds_between_retries": 30,
+        "suffix_start_slave_cmd": "",
+        "type": "ssh_launcher"
     },
+    "name": "sample_agent",
     "node_properties": {
+        "enable_node_based_security": false,
         "environment_variables": "",
-        "tool_location": "",
-        "enable_node_based_security": false
-    }
+        "tool_location": ""
+    },
+    "remote_root_dir": "/home/ubuntu",
+    "usages": "max"
 }

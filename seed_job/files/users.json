@@ -1,54 +1,54 @@
 [
     {
-        "name": "sample-user",
-        "pass": "password",
         "matrix": {
-            "run": {
+            "agent": {
+                "build": true,
+                "configure": true,
+                "connect": true,
+                "create": true,
                 "delete": true,
-                "replay": true,
-                "update": true
+                "disconnect": true
             },
             "credential": {
                 "create": true,
                 "delete": true,
-                "view": true,
                 "manage_domains": true,
-                "update": true
+                "update": true,
+                "view": true
+            },
+            "job": {
+                "build": true,
+                "cancel": true,
+                "configure": true,
+                "create": true,
+                "delete": true,
+                "discover": true,
+                "move": true,
+                "read": true,
+                "workspace": true
             },
             "overall": {
                 "administer": true,
                 "read": true
             },
-            "state": "present",
-            "view": {
-                "create": true,
+            "run": {
                 "delete": true,
-                "configure": true,
-                "read": true
-            },
-            "agent": {
-                "connect": true,
-                "disconnect": true,
-                "create": true,
-                "delete": true,
-                "configure": true,
-                "build": true
+                "replay": true,
+                "update": true
             },
             "scm": {
                 "tag": true
             },
-            "job": {
-                "workspace": true,
-                "move": true,
+            "state": "present",
+            "view": {
                 "configure": true,
-                "read": true,
-                "build": true,
-                "cancel": true,
                 "create": true,
-                "discover": true,
-                "delete": true
+                "delete": true,
+                "read": true
             }
         },
+        "name": "sample-user",
+        "pass": "password",
         "state": "present"
     },
     {

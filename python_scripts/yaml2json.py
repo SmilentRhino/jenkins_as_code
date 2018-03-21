@@ -39,7 +39,7 @@ def yaml2json(yaml_path, path_type, overwrite):
                 with open(yaml_path, 'r') as yaml_file:
                     yaml_content = yaml.load(yaml_file)
                 with open(json_path, 'w') as json_file:
-                    json.dump(yaml_content, json_file, indent=4)
+                    json.dump(yaml_content, json_file, indent=4, sort_keys=True)
 
 
 
