@@ -45,7 +45,7 @@ expected_credentials.each{ expected_cred->
             }
             else{
                 println "Unsupported credential scope"
-                continue
+                return
             }
             if (expected_cred.type == 'username_password') {
                 cred = UsernamePasswordCredentialsImpl(scope=expected.cred.scop,
@@ -55,10 +55,10 @@ expected_credentials.each{ expected_cred->
                            password=expected_cred.password)
             }
             else if (expected_cred.type == 'username_priv_key'){
-                continue 
+                return 
             }
             else if (expected_cred.type == 'username_secret_text'){
-                continue
+                return
             }
             else{
                 println 'Unsupported credential type'
@@ -67,7 +67,7 @@ expected_credentials.each{ expected_cred->
     }
     else{
         println ("Domain other than global not supported now")
-        continue
+        return
     }
 }
 
