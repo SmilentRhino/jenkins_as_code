@@ -1,64 +1,64 @@
 [
     {
-        "state": "present", 
-        "pass": "password", 
+        "name": "sample-user",
+        "pass": "password",
         "matrix": {
+            "run": {
+                "delete": true,
+                "replay": true,
+                "update": true
+            },
+            "credential": {
+                "create": true,
+                "delete": true,
+                "view": true,
+                "manage_domains": true,
+                "update": true
+            },
+            "overall": {
+                "administer": true,
+                "read": true
+            },
+            "state": "present",
+            "view": {
+                "create": true,
+                "delete": true,
+                "configure": true,
+                "read": true
+            },
+            "agent": {
+                "connect": true,
+                "disconnect": true,
+                "create": true,
+                "delete": true,
+                "configure": true,
+                "build": true
+            },
             "scm": {
                 "tag": true
-            }, 
-            "credential": {
-                "manage_domains": true, 
-                "create": true, 
-                "delete": true, 
-                "update": true, 
-                "view": true
-            }, 
-            "run": {
-                "replay": true, 
-                "update": true, 
-                "delete": true
-            }, 
-            "overall": {
-                "administer": true, 
-                "read": true
-            }, 
-            "state": "present", 
-            "agent": {
-                "disconnect": true, 
-                "configure": true, 
-                "build": true, 
-                "create": true, 
-                "delete": true, 
-                "connect": true
-            }, 
+            },
             "job": {
-                "configure": true, 
-                "read": true, 
-                "create": true, 
-                "move": true, 
-                "discover": true, 
-                "build": true, 
-                "workspace": true, 
-                "cancel": true, 
-                "delete": true
-            }, 
-            "view": {
-                "read": true, 
-                "create": true, 
-                "configure": true, 
+                "workspace": true,
+                "move": true,
+                "configure": true,
+                "read": true,
+                "build": true,
+                "cancel": true,
+                "create": true,
+                "discover": true,
                 "delete": true
             }
-        }, 
-        "name": "sample-user"
-    }, 
+        },
+        "state": "present"
+    },
     {
-        "state": "absent", 
-        "name": "sample-user1", 
-        "pass": "changeme"
-    }, 
+        "name": "sample-user1",
+        "pass": "changeme",
+        "state": "absent"
+    },
     {
-        "state": "present", 
-        "name": "sample-user2", 
-        "pass": "iwonttellyou"
+        "name": "sample-user2",
+        "pass": "iwonttellyou",
+        "state": "present"
     }
 ]

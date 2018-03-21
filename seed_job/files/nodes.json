@@ -1,19 +1,19 @@
 {
-    "usages": "max", 
-    "name": "sample_agent", 
-    "executors": 1, 
-    "remote_root_dir": "/home/ubuntu", 
+    "availability": "keep",
+    "executors": 1,
+    "remote_root_dir": "/home/ubuntu",
+    "description": "just a sample agent",
+    "name": "sample_agent",
+    "usages": "max",
+    "label": "test",
     "launch_method": {
-        "credentials": "", 
-        "host": "192.168.0.1", 
+        "host": "192.168.0.1",
+        "credentials": "",
         "hostkey_verify": false
-    }, 
-    "label": "test", 
+    },
     "node_properties": {
-        "environment_variables": "", 
-        "enable_node_based_security": false, 
-        "tool_location": ""
-    }, 
-    "availability": "keep", 
-    "description": "just a sample agent"
+        "environment_variables": "",
+        "tool_location": "",
+        "enable_node_based_security": false
+    }
 }
