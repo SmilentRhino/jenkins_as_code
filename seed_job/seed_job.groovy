@@ -81,6 +81,21 @@ job('install_plugins') {
     }
 }
 
+job('add_credentials') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/add_credentials.groovy')) {
+        }
+    }
+}
+
 
 pipelineJob('groovy_maps') {
     definition {
@@ -400,6 +415,7 @@ sectionedView("JENKINS_ADMIN") {
                     'create_user',
                     'set_auth_strategy',
                     'set_crowd2',
+                    'add_credentials',
                     'delete_all_jobs')
             }
             columns {
