@@ -1,0 +1,19 @@
+{
+    "usages": "max", 
+    "name": "sample_agent", 
+    "executors": 1, 
+    "remote_root_dir": "/home/ubuntu", 
+    "launch_method": {
+        "credentials": "", 
+        "host": "192.168.0.1", 
+        "hostkey_verify": false
+    }, 
+    "label": "test", 
+    "node_properties": {
+        "environment_variables": "", 
+        "enable_node_based_security": false, 
+        "tool_location": ""
+    }, 
+    "availability": "keep", 
+    "description": "just a sample agent"
+}

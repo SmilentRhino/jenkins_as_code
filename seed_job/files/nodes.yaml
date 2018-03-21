@@ -1,0 +1,15 @@
+name: sample_agent
+description: just a sample agent
+executors: 1
+remote_root_dir: "/home/ubuntu"
+label: test
+usages: max
+launch_method:
+  host: "192.168.0.1"
+  credentials: ''
+  hostkey_verify: No
+availability: keep
+node_properties:
+  enable_node_based_security: false
+  environment_variables: ''
+  tool_location: '' 
