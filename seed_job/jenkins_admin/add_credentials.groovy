@@ -16,9 +16,11 @@ def expected_credentials = new JsonSlurper().parse(inputFile)
 current_credentials = SystemCredentialsProvider.getInstance().getDomainCredentialsMap()
 
 def cred_exists(cred_domain, id){
-    current_credentials.each{ domain, cred->
-        if (domain==cred_domain && cred.getId()==id){
-            return true
+    current_credentials.each{ domain, creds->
+        creds.each { cred->
+            if (domain==cred_domain && cred.getId()==id){
+                return true
+            }
         }
     }
     return false
