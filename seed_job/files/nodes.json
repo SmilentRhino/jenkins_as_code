@@ -1,28 +1,30 @@
-{
-    "availability": "keep", 
-    "description": "just a sample agent", 
-    "executors": 1, 
-    "label": "test", 
-    "launch_method": {
-        "connection_timeout": 0, 
-        "credential_id": "sample_global_system_cred", 
-        "host": "192.168.0.1", 
-        "hostkey_verify": false, 
-        "jave_path": "", 
-        "jvm_options": "", 
-        "maximum_number_of_retries": 3, 
-        "port": 22, 
-        "prefix_start_slave_cmd": "", 
-        "seconds_between_retries": 30, 
-        "suffix_start_slave_cmd": "", 
-        "type": "ssh_launcher"
-    }, 
-    "name": "sample_agent", 
-    "node_properties": {
-        "enable_node_based_security": false, 
-        "environment_variables": "", 
-        "tool_location": ""
-    }, 
-    "remote_root_dir": "/home/ubuntu", 
-    "usages": "max"
-}
+[
+    {
+        "availability": "keep",
+        "description": "just a sample agent",
+        "executors": 1,
+        "label": "test",
+        "launch_method": {
+            "connection_timeout": 0,
+            "credential_id": "sample_global_system_cred",
+            "host": "192.168.0.1",
+            "hostkey_verify": false,
+            "jave_path": "",
+            "jvm_options": "",
+            "maximum_number_of_retries": 3,
+            "port": 22,
+            "prefix_start_slave_cmd": "",
+            "seconds_between_retries": 30,
+            "suffix_start_slave_cmd": "",
+            "type": "ssh_launcher"
+        },
+        "name": "sample_agent",
+        "node_properties": {
+            "enable_node_based_security": false,
+            "environment_variables": "",
+            "tool_location": ""
+        },
+        "remote_root_dir": "/home/ubuntu",
+        "usages": "max"
+    }
+]
