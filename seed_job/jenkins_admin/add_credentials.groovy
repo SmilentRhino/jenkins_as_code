@@ -55,13 +55,16 @@ expected_credentials.each{ expected_cred->
                            password=expected_cred.password)
             }
             else if (expected_cred.type == 'username_priv_key'){
+                println 'Cred type username_priv_key to be supported'
                 return 
             }
             else if (expected_cred.type == 'username_secret_text'){
+                println 'Cred type username_secret_text to be supported'
                 return
             }
             else{
                 println 'Unsupported credential type'
+                return
             }
         SystemCredentialsProvider.getInstance().getStore().addCredentials(cred_domain, cred)
     }
