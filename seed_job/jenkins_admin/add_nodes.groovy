@@ -89,6 +89,9 @@ expected_nodes.each{ expected_node->
             launcher=node_launcher)
         node.setMode(node_mode)
         node.setRetentionStrategy(node_retention)
+        node.setLabelString(expected_node?.label)
+        node.setNodeDescription(expected_node?.description)
+        node.setNumExecutors(expected_node?.executors)
         Jenkins.instance.addNode(node)
         Jenkins.instance.save()
     }
