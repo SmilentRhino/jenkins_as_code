@@ -10,7 +10,7 @@
     credential_id: 'sample_global_system_cred'
     hostkey_verify: 'non_verify'
     port: 22
-    jave_path: ''
+    java_path: ''
     jvm_options: ''
     prefix_start_slave_cmd: ''
     suffix_start_slave_cmd: ''

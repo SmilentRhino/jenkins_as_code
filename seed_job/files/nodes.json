@@ -9,7 +9,7 @@
             "credential_id": "sample_global_system_cred",
             "host": "192.168.0.1",
             "hostkey_verify": "non_verify",
-            "jave_path": "",
+            "java_path": "",
             "jvm_options": "",
             "maximum_number_of_retries": 3,
             "port": 22,
