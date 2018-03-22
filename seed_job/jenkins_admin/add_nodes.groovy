@@ -4,7 +4,7 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import hudson.model.Node.Mode
 import hudson.slaves.DumbSlave
-import hudson.slaves.RetentionStrategy.*
+import hudson.slaves.*
 import hudson.plugins.sshslaves.SSHLauncher
 import hudson.plugins.sshslaves.verifiers.*
 
@@ -36,12 +36,15 @@ expected_nodes.each{ expected_node->
             println 'Unsupported node mode'
             return
         }
-        switch (expected_node?.retention){
+        switch (expected_node?.retention?.type){
             case 'always':
                 node_retention = new RetentionStrategy.Always()
                 break
             case 'demand':
-                node_retention = new RetentionStrategy.Demand()
+                node_retention = new RetentionStrategy.Demand(
+                    inDemandDelay=expected_node?.retention?.in_demand_delay,
+                    idleDela=expected_node?.retention?.idle_delay
+                )
                 break
             default:
                 println 'Unsupported retention strategy'

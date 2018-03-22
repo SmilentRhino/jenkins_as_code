@@ -25,7 +25,9 @@
             "tool_location": ""
         },
         "remote_root_dir": "/home/ubuntu/workspace",
-        "retention": "always"
+        "retention": {
+            "type": "always"
+        }
     },
     {
         "description": "just a sample agent",
@@ -53,6 +55,10 @@
             "tool_location": ""
         },
         "remote_root_dir": "/home/ubuntu/workspace",
-        "retention": "demand"
+        "retention": {
+            "idle_delay": 30,
+            "in_demand_delay": 30,
+            "type": "demand"
+        }
     }
 ]

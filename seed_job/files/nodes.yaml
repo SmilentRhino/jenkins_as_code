@@ -3,7 +3,8 @@
   executors: 1
   remote_root_dir: "/home/ubuntu/workspace"
   label: test
-  retention: always
+  retention:
+    type: always
   launch_method:
     type: "ssh_launcher"
     host: "192.168.0.1"
@@ -28,7 +29,10 @@
   executors: 1
   remote_root_dir: "/home/ubuntu/workspace"
   label: test
-  retention: demand
+  retention:
+      type: demand
+      in_demand_delay: 30
+      idle_delay: 30
   launch_method:
     type: "ssh_launcher"
     host: "192.168.0.1"
