@@ -36,12 +36,14 @@ def yaml2json(yaml_path, path_type, overwrite):
             if os.path.exists(json_path) and not overwrite:
                 logging.warning("%s exists, skip...", json_path)
             else:
-                with open(yaml_path, 'r') as yaml_file:
-                    yaml_content = yaml.load(yaml_file)
-                with open(json_path, 'w') as json_file:
-                    json.dump(yaml_content, json_file, indent=4, sort_keys=True)
-
-
+                is_overwrite = input("Are you sure you want to overwrite?(Y/N)")
+                if is_overwrite.lower() == 'y':
+                    with open(yaml_path, 'r') as yaml_file:
+                        yaml_content = yaml.load(yaml_file)
+                    with open(json_path, 'w') as json_file:
+                        json.dump(yaml_content, json_file, indent=4, sort_keys=True)
+                else:
+                    logging.info('Skip overwrite %s', json_path)
 
 if __name__ == '__main__':
     yaml2json()

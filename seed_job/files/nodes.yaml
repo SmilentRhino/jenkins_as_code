@@ -1,14 +1,14 @@
 - name: sample_agent
   description: just a sample agent
   executors: 1
-  remote_root_dir: "/home/ubuntu"
+  remote_root_dir: "/home/ubuntu/workspace"
   label: test
   usages: max
   launch_method:
     type: "ssh_launcher"
     host: "192.168.0.1"
     credential_id: 'sample_global_system_cred'
-    hostkey_verify: No
+    hostkey_verify: 'non_verify'
     port: 22
     jave_path: ''
     jvm_options: ''
