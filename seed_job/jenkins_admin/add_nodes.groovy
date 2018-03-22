@@ -22,6 +22,18 @@ expected_nodes.each{ expected_node->
     else{
         def node_launcher = ''
         def node_verify_strategy = ''
+        def node_mode = ''
+        if (expected_node?.mode == 'normal') {
+            node_mode = Mode.NORMAL
+        }
+        else if (expected_node?.mode == 'exclusive') {
+            node_mode = Mode.EXCLUSIVE
+        }
+        else {
+            println 'Unsupported node mode'
+            return
+        }
+
         if (expected_node?.launch_method?.type == "ssh_launcher") {
             switch (expected_node?.launch_method.hostkey_verify) {
                 case 'known_hosts_file':
@@ -45,7 +57,7 @@ expected_nodes.each{ expected_node->
                 port=expected_node?.launch_method?.port,
                 credentialsId=expected_node?.launch_method?.credential_id,
                 jvmOptions=expected_node?.launch_method?.jvm_options,
-                javaPath=expected_node?.launch_method?.java_path
+                javaPath=expected_node?.launch_method?.java_path,
                 prefixStartSlaveCmd=expected_node?.launch_method?.prefix_start_slave_cmd,
                 suffixStartSlaveCmd=expected_node?.launch_method?.suffix_start_slave_cmd,
                 launchTimeoutSeconds=expected_node?.launch_method?.connection_timeout,
@@ -58,8 +70,9 @@ expected_nodes.each{ expected_node->
             return
         }
         node = new DumbSlave(name=expected_node.name,
-            remoteFS=expected_node.name.remote_root_dir,
+            remoteFS=expected_node.remote_root_dir,
             launcher=node_launcher)
+        node.setMode(node_mode)
         Jenkins.instance.addNode(node)
         Jenkins.instance.save()
     }
