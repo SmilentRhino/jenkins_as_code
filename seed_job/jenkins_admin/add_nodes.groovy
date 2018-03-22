@@ -4,6 +4,7 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import hudson.slaves.DumbSlave
 import hudson.plugins.sshslaves.SSHLauncher
+import hudson.plugins.sshslaves.verifiers.*
 
 /*
 Currently only support system credentials with global domain
@@ -13,8 +14,6 @@ def credentials_list_path = build.workspace.toString() + '/seed_job/files/nodes.
 def inputFile = new File("$credentials_list_path")
 def expected_nodes = new JsonSlurper().parse(inputFile)
 
-    Jenkins.instance.getNode(node_name)
-
 expected_nodes.each{ expected_node->
     node = Jenkins.instance.getNode(expected_node.name)
     if (node) {
@@ -22,7 +21,23 @@ expected_nodes.each{ expected_node->
     }
     else{
         def node_launcher = ''
-        if (expected_node.name?.launch_method?.type == "ssh_launcher") {
+        def node_verify_strategy = ''
+        if (expected_node?.launch_method?.type == "ssh_launcher") {
+            swich (expected_node?.launch_method.hostkey_verify) {
+                case known_hosts_file:
+                    node_verify_strategy = new KnownHostsFileKeyVerificationStrategy() 
+                case manually_provided:
+                    println 'Manual host key verify strategy not supported in groovy'
+                    return
+                case manually_trusted:
+                    println 'Manual host key verify strategy not supported in groovy'
+                    return
+                case non_verify:
+                    node_verify_strategy = new NonVerifyingKeyVerificationStrategy() 
+                default:
+                    println 'Unknown host key verify strategy'
+                    return
+            }
             node_launcher = new SSHLauncher(
                 host=expected_node.host,
                 port=expected_node.port,
