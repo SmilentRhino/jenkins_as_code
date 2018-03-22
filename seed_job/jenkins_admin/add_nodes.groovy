@@ -26,6 +26,7 @@ expected_nodes.each{ expected_node->
             switch (expected_node?.launch_method.hostkey_verify) {
                 case 'known_hosts_file':
                     node_verify_strategy = new KnownHostsFileKeyVerificationStrategy() 
+                    break
                 case 'manually_provided':
                     println 'Manual host key verify strategy not supported in groovy'
                     return
@@ -34,6 +35,7 @@ expected_nodes.each{ expected_node->
                     return
                 case 'non_verify':
                     node_verify_strategy = new NonVerifyingKeyVerificationStrategy() 
+                    break
                 default:
                     println 'Unknown host key verify strategy'
                     return
