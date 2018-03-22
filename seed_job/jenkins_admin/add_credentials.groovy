@@ -1,5 +1,6 @@
 import jenkins.model.*
 import hudson.model.User
+import hudson.util.Secret
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import com.cloudbees.plugins.credentials.*
@@ -49,24 +50,29 @@ expected_credentials.each{ expected_cred->
                 println "Unsupported credential scope"
                 return
             }
-            if (expected_cred.type == 'username_password') {
-                cred = new UsernamePasswordCredentialsImpl(scope=cred_scope,
-                               id=expected_cred.id,
-                               description=expected_cred.description,
-                               username=expected_cred.username,
-                               password=expected_cred.password)
-            }
-            else if (expected_cred.type == 'username_priv_key'){
-                println 'Cred type username_priv_key to be supported'
-                return 
-            }
-            else if (expected_cred.type == 'username_secret_text'){
-                println 'Cred type username_secret_text to be supported'
-                return
-            }
-            else{
-                println 'Unsupported credential type'
-                return
+            switch (expected_cred.type) {
+                case 'username_password':
+                    cred = new UsernamePasswordCredentialsImpl(scope=cred_scope,
+                                   id=expected_cred.id,
+                                   description=expected_cred.description,
+                                   username=expected_cred.username,
+                                   password=expected_cred.password)
+                    break
+                case 'username_priv_key':
+                    println 'Cred type username_priv_key to be supported'
+                    return 
+                case 'secret_text':
+                    cred_secret = new hudson.util.Secret.fromString(expected_cred.secret)
+                    cred = new StringCredentialsImpl(
+                        scope=cred_scope,
+                        id=expected_cred.id,
+                        description=expected_cred.description,
+                        secret=cred_secret
+                    )
+                    break
+                default: 
+                    println 'Unsupported credential type'
+                    return
             }
         SystemCredentialsProvider.getInstance().getStore().addCredentials(cred_domain, cred)
     }
