@@ -25,7 +25,7 @@
             "tool_location": ""
         },
         "remote_root_dir": "/home/ubuntu/workspace",
-        "usages": "max"
+        "retention": "always"
     },
     {
         "description": "just a sample agent",
@@ -53,6 +53,6 @@
             "tool_location": ""
         },
         "remote_root_dir": "/home/ubuntu/workspace",
-        "usages": "max"
+        "retention": "demand"
     }
 ]

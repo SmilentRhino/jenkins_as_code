@@ -3,7 +3,7 @@
   executors: 1
   remote_root_dir: "/home/ubuntu/workspace"
   label: test
-  usages: max
+  retention: always
   launch_method:
     type: "ssh_launcher"
     host: "192.168.0.1"
@@ -28,7 +28,7 @@
   executors: 1
   remote_root_dir: "/home/ubuntu/workspace"
   label: test
-  usages: max
+  retention: demand
   launch_method:
     type: "ssh_launcher"
     host: "192.168.0.1"

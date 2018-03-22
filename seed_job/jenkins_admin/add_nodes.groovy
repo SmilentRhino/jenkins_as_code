@@ -2,7 +2,9 @@ import jenkins.model.*
 import hudson.model.User
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
+import hudson.model.Node.Mode
 import hudson.slaves.DumbSlave
+import hudson.slaves.RetentionStrategy.*
 import hudson.plugins.sshslaves.SSHLauncher
 import hudson.plugins.sshslaves.verifiers.*
 
@@ -17,12 +19,13 @@ def expected_nodes = new JsonSlurper().parse(inputFile)
 expected_nodes.each{ expected_node->
     node = Jenkins.instance.getNode(expected_node.name)
     if (node) {
-        println ("Node $node.getNodeName() exists")
+        println ("Node " + node.getNodeName() + " exists")
     }
     else{
         def node_launcher = ''
         def node_verify_strategy = ''
         def node_mode = ''
+        def node_retention = ''
         if (expected_node?.mode == 'normal') {
             node_mode = Mode.NORMAL
         }
@@ -33,7 +36,16 @@ expected_nodes.each{ expected_node->
             println 'Unsupported node mode'
             return
         }
-
+        switch (expected_node?.retention){
+            case 'always':
+                node_retention = new RetentionStrategy.Always()
+                break
+            case 'demand':
+                node_retention = new RetentionStrategy.Demand()
+                break
+            default:
+                println 'Unsupported retention strategy'
+        }
         if (expected_node?.launch_method?.type == "ssh_launcher") {
             switch (expected_node?.launch_method.hostkey_verify) {
                 case 'known_hosts_file':
@@ -73,6 +85,7 @@ expected_nodes.each{ expected_node->
             remoteFS=expected_node.remote_root_dir,
             launcher=node_launcher)
         node.setMode(node_mode)
+        node.setRetentionStrategy(node_retention)
         Jenkins.instance.addNode(node)
         Jenkins.instance.save()
     }
