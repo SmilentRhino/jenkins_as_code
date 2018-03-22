@@ -41,16 +41,16 @@ expected_nodes.each{ expected_node->
                     return
             }
             node_launcher = new SSHLauncher(
-                host=expected_node.host,
-                port=expected_node.port,
-                credentialsId=expected_node.credential_id,
-                jvmOptions=expected_node.jvm_options,
-                javaPath=expected_node.java_path
-                prefixStartSlaveCmd=expected_node.prefix_start_slave_cmd,
-                suffixStartSlaveCmd=expected_node.suffix_start_slave_cmd,
-                launchTimeoutSeconds=expected_node.connection_timeout,
-                maxNumRetries=expected_node.maximum_number_of_retries,
-                retryWaitTime=expected_node.seconds_between_retries,
+                host=expected_node?.launch_method?.host,
+                port=expected_node?.launch_method?.port,
+                credentialsId=expected_node?.launch_method?.credential_id,
+                jvmOptions=expected_node?.launch_method?.jvm_options,
+                javaPath=expected_node?.launch_method?.java_path
+                prefixStartSlaveCmd=expected_node?.launch_method?.prefix_start_slave_cmd,
+                suffixStartSlaveCmd=expected_node?.launch_method?.suffix_start_slave_cmd,
+                launchTimeoutSeconds=expected_node?.launch_method?.connection_timeout,
+                maxNumRetries=expected_node?.launch_method?.maximum_number_of_retries,
+                retryWaitTime=expected_node?.launch_method?.seconds_between_retries,
                 sshHostKeyVerificationStrategy= node_verify_strategy
             )
         }
