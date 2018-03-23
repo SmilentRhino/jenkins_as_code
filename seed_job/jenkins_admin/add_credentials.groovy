@@ -6,6 +6,7 @@ import groovy.json.JsonOutput
 import com.cloudbees.plugins.credentials.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.plugins.credentials.domains.*
+import org.jenkinsci.plugins.plaincredentials.impl.*
 /*
 Currently only support system credentials with global domain
 */
@@ -62,7 +63,7 @@ expected_credentials.each{ expected_cred->
                     println 'Cred type username_priv_key to be supported'
                     return 
                 case 'secret_text':
-                    cred_secret = new hudson.util.Secret.fromString(expected_cred.secret)
+                    cred_secret = hudson.util.Secret.fromString(expected_cred.secret)
                     cred = new StringCredentialsImpl(
                         scope=cred_scope,
                         id=expected_cred.id,
