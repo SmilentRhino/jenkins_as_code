@@ -18,9 +18,10 @@ println ('Yaml')
 println ('-----------------------------------------------------')
 println ('-----------------------------------------------------')
 
-plugin_list.each{name, version -> 
-  println ("$name : \"$version\"")
+plugin_list.sort().each{name, version -> 
+  println ("$name:$version")
 }
+
 println ('-----------------------------------------------------')
 println ('-----------------------------------------------------')
 println ('Json')
