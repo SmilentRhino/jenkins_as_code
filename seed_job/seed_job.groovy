@@ -7,6 +7,112 @@ pipelineJob('simple_pipeline_job') {
     }
 }
 
+job('list_plugins') {
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/list_plugins.groovy')) {
+        }
+    }
+}
+
+job('delete_all_jobs') {
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/delete_all_jobs.groovy')) {
+        }
+    }
+}
+
+job('create_user') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/create_user.groovy')) {
+        }
+    }
+}
+
+
+job('add_nodes') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/add_nodes.groovy')) {
+        }
+    }
+}
+job('set_auth_strategy') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/set_auth_strategy.groovy')) {
+        }
+    }
+}
+
+job('set_crowd2') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/set_crowd2.groovy')) {
+        }
+    }
+}
+
+
+job('install_plugins') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/install_plugins.groovy')) {
+        }
+    }
+}
+
+job('add_credentials') {
+    scm {
+        git {
+            remote {
+                url('https://github.com/SmilentRhino/jenkins_as_code.git')
+            }
+            branch('feature/refactor')
+        }
+    }
+    steps {
+        systemGroovyCommand(readFileFromWorkspace('seed_job/jenkins_admin/add_credentials.groovy')) {
+        }
+    }
+}
+
+
 pipelineJob('groovy_maps') {
     definition {
         cps {
@@ -74,6 +180,15 @@ pipelineJob('declare_parameter') {
     definition {
         cps {
             script(readFileFromWorkspace('seed_job/sample/declare_parameter'))
+            sandbox()
+        }
+    }
+}
+
+pipelineJob('readyaml_example') {
+    definition {
+        cps {
+            script(readFileFromWorkspace('seed_job/sample/readyaml_example.groovy'))
             sandbox()
         }
     }
@@ -287,6 +402,50 @@ for (project_name in projects) {
 }
 
 sectionedView("JENKINS_ADMIN") {
+    sections {
+        listView {
+            name('Seed')
+            width('HALF')
+            alignment('LEFT')
+            jobs {
+              names('seed_job',
+                    'seed_dsl')
+            }
+            columns {
+                status()
+                weather()
+                name()
+                lastSuccess()
+                lastFailure()
+            }
+        }
+    }
+    sections {
+        listView {
+            name('GroovyHelper')
+            width('HALF')
+            alignment('LEFT')
+            jobs {
+              names('list_plugins',
+                    'install_plugins',
+                    'create_user',
+                    'set_auth_strategy',
+                    'set_crowd2',
+                    'add_credentials',
+                    'add_nodes',
+                    'delete_all_jobs')
+            }
+            columns {
+                status()
+                weather()
+                name()
+                lastSuccess()
+                lastFailure()
+            }
+        }
+    }
+
+
     sections {
         listView {
             name('ADMIN')

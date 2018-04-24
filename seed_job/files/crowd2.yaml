@@ -1,0 +1,17 @@
+url: "https://www.alexrhino.net/crowd/"
+applicationName: "jenkins"
+password: "password"
+group: ''
+nestedGroups: false
+sessionValidationInterval: 2
+useSSO: false
+cookieDomain: ''
+cookieTokenkey: ''
+useProxy: false
+httpProxyHost: ''
+httpProxyPort: ''
+httpProxyUsername: ''
+httpProxyPassword: ''
+socketTimeout: '20000'
+httpTimeout: '5000'
+httpMaxConnections: '20'

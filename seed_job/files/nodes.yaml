@@ -1,0 +1,53 @@
+- name: sample_agent
+  description: just a sample agent
+  executors: 1
+  remote_root_dir: "/home/ubuntu/workspace"
+  label: test
+  retention:
+    type: always
+  launch_method:
+    type: "ssh_launcher"
+    host: "192.168.0.1"
+    credential_id: 'sample_global_system_cred'
+    hostkey_verify: 'non_verify'
+    port: 22
+    java_path: ''
+    jvm_options: ''
+    prefix_start_slave_cmd: ''
+    suffix_start_slave_cmd: ''
+    connection_timeout: 0
+    maximum_number_of_retries: 3
+    seconds_between_retries: 30
+  mode: normal
+  node_properties:
+    enable_node_based_security: false
+    environment_variables: ''
+    tool_location: '' 
+
+- name: sample_agent1
+  description: just a sample agent
+  executors: 1
+  remote_root_dir: "/home/ubuntu/workspace"
+  label: test
+  retention:
+      type: demand
+      in_demand_delay: 30
+      idle_delay: 30
+  launch_method:
+    type: "ssh_launcher"
+    host: "192.168.0.1"
+    credential_id: 'sample_global_system_cred'
+    hostkey_verify: 'non_verify'
+    port: 22
+    java_path: ''
+    jvm_options: ''
+    prefix_start_slave_cmd: ''
+    suffix_start_slave_cmd: ''
+    connection_timeout: 0
+    maximum_number_of_retries: 3
+    seconds_between_retries: 30
+  mode: "exclusive"
+  node_properties:
+    enable_node_based_security: false
+    environment_variables: ''
+    tool_location: '' 
